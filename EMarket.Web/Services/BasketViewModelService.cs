@@ -23,7 +23,11 @@ namespace EMarket.Web.Services
             var product = _productRepository.GetById(productId);
             _basketService.AddItemToBasket(product.Id, product.ProductName, product.UnitPrice, product.ImagePath, quantity);
         }
+        public void RemoveFromBasket(int productId)
+        {
 
+            _basketService.RemoveItemFromBasket(productId);
+        }
         public IReadOnlyCollection<BasketItem> GetBasketItems()
         {
             return _basketService.BasketItems;

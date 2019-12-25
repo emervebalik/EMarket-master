@@ -3,9 +3,15 @@
 <div class="header-cart">
     <a class="icon-cart-furniture" href="#">
         <i class="ti-shopping-cart"></i>
-        <span class="shop-count-furniture green">@Model.TotalItems.ToString("00")</span>
+        <span class="shop-count-furniture green cart-item-count">@Model.TotalItems.ToString("00")</span>
     </a>
     <ul class="cart-dropdown">
+        @if (Model.TotalItems == 0)
+        {
+            <li class="my-3 text-center">
+                <h5>Your cart is empty. </h5>
+            </li>
+        }
         @foreach (var item in Model.BasketItem)
         {
             <li class="single-product-cart">
@@ -14,11 +20,11 @@
                 </div>
                 <div class="cart-title">
                     <h5><a href="#">@item.ProductName</a></h5>
-                    
+
                     <span>@item.UnitPrice.ToString("0.00")₺ x @item.Quantity</span>
                 </div>
                 <div class="cart-delete">
-                    <a href="#"><i class="ti-trash"></i></a>
+                    <a href="#" data-remove-from-basket-id="@item.ProductId"><i class="ti-trash"></i></a>
                 </div>
             </li>
         }
